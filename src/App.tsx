@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
+import Login from './modules/login/logins';
 
 function App(): JSX.Element {
-  return <div className="App">olá</div>;
+  return <Login />;
 }
 
 export default App;
