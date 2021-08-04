@@ -25,8 +25,23 @@
     ],
     "rules": {
         "import/no-unresolved": "error",
-        "react/react-in-jsx-scope": "off",
-        "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],        
-        "singleQuote": true,
-    }
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": ["error"],
+        "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx"]} ],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+            "ts": "never",
+            "tsx": "never"
+            }
+            ],
+"no-shadow": "off",
+"@typescript-eslint/no-shadow": ["error"]
+      },
+      "settings": {
+        "import/resolver": {
+        "typescript": {}
+        }
+        }
 }
