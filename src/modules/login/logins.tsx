@@ -1,7 +1,9 @@
+/* eslint-disable react/no-this-in-sfc */
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import { useHistory } from 'react-router-dom';
 import Authenticate from '../../domain/usecases/authenticate/Authenticate';
 import AxiosRequest from '../../infrastructure/api/AxiosRequest';
 import { AuthParams } from '../../types/AuthParams';
@@ -9,8 +11,9 @@ import { AuthParams } from '../../types/AuthParams';
 function Login(): JSX.Element {
   const axiosApi = new AxiosRequest();
   const authenticate = new Authenticate(axiosApi);
+  const history = useHistory();
 
-  const auth = (event: any) => {
+  const auth = async (event: any) => {
     event.preventDefault();
 
     const email = event.target.elements.email.value;
@@ -21,7 +24,9 @@ function Login(): JSX.Element {
       senha,
     };
 
-    authenticate.auth(params);
+    await authenticate.auth(params);
+
+    history.push('/admin');
   };
 
   return (
