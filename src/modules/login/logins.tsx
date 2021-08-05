@@ -2,11 +2,31 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Button, Container } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import Authenticate from '../../domain/usecases/authenticate/Authenticate';
+import AxiosRequest from '../../infrastructure/api/AxiosRequest';
+import { AuthParams } from '../../types/AuthParams';
 
 function Login(): JSX.Element {
+  const axiosApi = new AxiosRequest();
+  const authenticate = new Authenticate(axiosApi);
+
+  const auth = (event: any) => {
+    event.preventDefault();
+
+    const email = event.target.elements.email.value;
+    const senha = event.target.elements.password.value;
+
+    const params: AuthParams = {
+      email,
+      senha,
+    };
+
+    authenticate.auth(params);
+  };
+
   return (
     <Container>
-      <form action="">
+      <form onSubmit={auth}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <div>
@@ -32,7 +52,12 @@ function Login(): JSX.Element {
           </Grid>
           <Grid item xs={12}>
             <div>
-              <Button variant="contained" color="primary" fullWidth>
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                type="submit"
+              >
                 Entrar
               </Button>
             </div>
