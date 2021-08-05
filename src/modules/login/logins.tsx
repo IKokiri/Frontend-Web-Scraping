@@ -25,46 +25,48 @@ function Login(): JSX.Element {
   };
 
   return (
-    <Container>
-      <form onSubmit={auth}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <div>
-              <TextField
-                required
-                type="text"
-                id="email"
-                label="E-Mail"
-                fullWidth
-              />
-            </div>
+    <Grid container direction="row" justifyContent="center" alignItems="center">
+      <Grid item xs={4}>
+        <form onSubmit={auth}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <div>
+                <TextField
+                  required
+                  type="text"
+                  id="email"
+                  label="E-Mail"
+                  fullWidth
+                />
+              </div>
+            </Grid>
+            <Grid item xs={12}>
+              <div>
+                <TextField
+                  required
+                  type="password"
+                  id="password"
+                  label="Password"
+                  fullWidth
+                />
+              </div>
+            </Grid>
+            <Grid item xs={12}>
+              <div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  type="submit"
+                >
+                  Entrar
+                </Button>
+              </div>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <div>
-              <TextField
-                required
-                type="password"
-                id="password"
-                label="Password"
-                fullWidth
-              />
-            </div>
-          </Grid>
-          <Grid item xs={12}>
-            <div>
-              <Button
-                variant="contained"
-                color="primary"
-                fullWidth
-                type="submit"
-              >
-                Entrar
-              </Button>
-            </div>
-          </Grid>
-        </Grid>
-      </form>
-    </Container>
+        </form>
+      </Grid>
+    </Grid>
   );
 }
 
