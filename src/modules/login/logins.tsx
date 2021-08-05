@@ -24,9 +24,12 @@ function Login(): JSX.Element {
       senha,
     };
 
-    await authenticate.auth(params);
-
-    history.push('/admin');
+    const response = await authenticate.auth(params);
+    if (response.body.data.status) {
+      history.push('/admin');
+    } else {
+      alert(response.body.data.message);
+    }
   };
 
   return (
