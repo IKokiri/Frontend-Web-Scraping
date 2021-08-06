@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { AuthParams } from '../../types/AuthParams';
 import { ApiResponse } from '../../types/ApiResponse';
-import { IApiRequest } from './IApiRequest';
+import { IApiPostRequest } from './IApiPostRequest';
 
-class AxiosRequest implements IApiRequest {
+class AxiosPostRequest implements IApiPostRequest {
   private url = 'http://localhost:9000/v1/user/login';
 
   async postRequest(params: AuthParams): Promise<ApiResponse> {
@@ -24,4 +24,4 @@ class AxiosRequest implements IApiRequest {
   }
 }
 
-export default AxiosRequest;
+export default AxiosPostRequest;

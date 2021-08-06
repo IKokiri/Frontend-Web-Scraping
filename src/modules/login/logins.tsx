@@ -5,12 +5,12 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom';
 import Authenticate from '../../domain/usecases/authenticate/Authenticate';
-import AxiosRequest from '../../infrastructure/api/AxiosRequest';
+import AxiosPostRequest from '../../infrastructure/api/AxiosPostRequest';
 import { AuthParams } from '../../types/AuthParams';
 
 function Login(): JSX.Element {
-  const axiosApi = new AxiosRequest();
-  const authenticate = new Authenticate(axiosApi);
+  const axiosPostApi = new AxiosPostRequest();
+  const authenticate = new Authenticate(axiosPostApi);
   const history = useHistory();
 
   const auth = async (event: any) => {

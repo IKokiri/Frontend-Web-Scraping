@@ -1,10 +1,10 @@
 import { IAuthenticate } from './IAuthenticate';
-import { IApiRequest } from '../../../infrastructure/api/IApiRequest';
+import { IApiPostRequest } from '../../../infrastructure/api/IApiPostRequest';
 import { AuthParams } from '../../../types/AuthParams';
 import { ApiResponse } from '../../../types/ApiResponse';
 
 class Authenticate implements IAuthenticate {
-  constructor(private apiRequest: IApiRequest) {}
+  constructor(private apiRequest: IApiPostRequest) {}
 
   async auth(params: AuthParams): Promise<ApiResponse> {
     return this.apiRequest.postRequest(params);

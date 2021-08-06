@@ -1,6 +1,6 @@
 import { ApiResponse } from '../../types/ApiResponse';
 import { AuthParams } from '../../types/AuthParams';
 
-export interface IApiRequest {
+export interface IApiPostRequest {
   postRequest(params: AuthParams): Promise<ApiResponse>;
 }

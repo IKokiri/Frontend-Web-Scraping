@@ -21,6 +21,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitIcon from '@material-ui/icons/PowerSettingsNew';
+import Products from '../products/products';
 
 const drawerWidth = 240;
 
@@ -154,8 +155,7 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
-        <Typography paragraph>Lorem ipsum dolor sit ame</Typography>
-        <Typography paragraph>Consequat mauris nunc congue</Typography>
+        <Products />
       </main>
     </div>
   );
