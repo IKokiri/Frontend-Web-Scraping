@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import {
   makeStyles,
@@ -21,10 +21,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitIcon from '@material-ui/icons/PowerSettingsNew';
-import Products from '../products/products';
+import { Grid } from '@material-ui/core';
+import ProductCard from '../products/ProductCard';
+import AxiosGetRequest from '../../infrastructure/api/AxiosGetRequest';
+import { Product } from '../../types/Product';
 
 const drawerWidth = 240;
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -88,6 +90,18 @@ export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  const [products, setProducts] = React.useState([]);
+
+  async function listProducts(): Promise<void> {
+    const axiosGetRequest = new AxiosGetRequest();
+    const resultGetRequest = await axiosGetRequest.getRequest();
+    setProducts(resultGetRequest.body.data);
+  }
+
+  useEffect(() => {
+    listProducts();
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -155,7 +169,24 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
-        <Products />
+        <Grid container spacing={1}>
+          {products.map((product: Product) => {
+            return (
+              <Grid item xs={4}>
+                <ProductCard
+                  id={product.id}
+                  description={product.description}
+                  model={product.model}
+                  idNotebook={product.idNotebook}
+                  img={product.img}
+                  linkDetails={product.linkDetails}
+                  price={product.price}
+                  ratting={product.ratting}
+                />
+              </Grid>
+            );
+          })}
+        </Grid>
       </main>
     </div>
   );
