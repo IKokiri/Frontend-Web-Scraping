@@ -10,7 +10,7 @@ function Products(): JSX.Element {
   async function listProducts(): Promise<void> {
     const axiosGetRequest = new AxiosGetRequest();
     const resultGetRequest = await axiosGetRequest.getRequest();
-    setProducts(resultGetRequest.body.data);
+    setProducts(resultGetRequest.body.data.data);
   }
 
   useEffect(() => {

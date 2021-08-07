@@ -3,7 +3,7 @@ import { ApiResponse } from '../../types/ApiResponse';
 import { IApiGetRequest } from './IApiGetRequest';
 
 class AxiosGetRequest implements IApiGetRequest {
-  private url = 'http://localhost:9000/v1/crawler';
+  private url = 'http://localhost:9000/v1/notebook';
 
   async getRequest(): Promise<ApiResponse> {
     const response = await axios

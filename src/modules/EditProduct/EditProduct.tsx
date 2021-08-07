@@ -1,5 +1,6 @@
 import { Button, Grid, TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import AxiosGetWithParams from '../../infrastructure/api/AxiosGetWithParams';
 import { Product } from '../../types/Product';
 
@@ -10,7 +11,9 @@ function EditProduct(): JSX.Element {
   const [price, setPrice] = useState(0);
   const [ratting, setRatting] = useState('');
 
-  async function getWithParams(id: number): Promise<void> {
+  const { id }: any = useParams();
+
+  async function getWithParams(): Promise<void> {
     const axiosGetWithParams = new AxiosGetWithParams();
     const response = await axiosGetWithParams.getWithParams(id);
     const prod: Product = { ...response.body.data.data };
@@ -23,7 +26,7 @@ function EditProduct(): JSX.Element {
   }
 
   useEffect(() => {
-    getWithParams(539);
+    getWithParams();
   }, []);
 
   return (

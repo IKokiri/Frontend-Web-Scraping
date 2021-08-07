@@ -175,7 +175,7 @@ export default function PersistentDrawerLeft() {
               <Route exact path="/admin/product">
                 <Products />
               </Route>
-              <Route exact path="/admin/product/edit/">
+              <Route exact path="/admin/product/edit/:id">
                 <EditProduct />
               </Route>
             </Switch>
