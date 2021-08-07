@@ -21,9 +21,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitIcon from '@material-ui/icons/PowerSettingsNew';
-import { Grid } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { Product } from '../../types/Product';
+import ComputerIcon from '@material-ui/icons/Computer';
 import Products from '../products/Products';
 import EditProduct from '../EditProduct/EditProduct';
 
@@ -152,7 +151,7 @@ export default function PersistentDrawerLeft() {
               key="products"
             >
               <ListItemIcon>
-                <ExitIcon />
+                <ComputerIcon />
               </ListItemIcon>
               <ListItemText primary="Products" />
             </ListItem>
