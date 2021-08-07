@@ -22,9 +22,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitIcon from '@material-ui/icons/PowerSettingsNew';
 import { Grid } from '@material-ui/core';
-import ProductCard from '../products/ProductCard';
-import AxiosGetRequest from '../../infrastructure/api/AxiosGetRequest';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Product } from '../../types/Product';
+import Products from '../products/Products';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
@@ -91,18 +91,6 @@ export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const [products, setProducts] = React.useState([]);
-
-  async function listProducts(): Promise<void> {
-    const axiosGetRequest = new AxiosGetRequest();
-    const resultGetRequest = await axiosGetRequest.getRequest();
-    setProducts(resultGetRequest.body.data);
-  }
-
-  useEffect(() => {
-    listProducts();
-  }, []);
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -135,59 +123,61 @@ export default function PersistentDrawerLeft() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          <ListItem button key="sair">
-            <ListItemIcon>
-              <ExitIcon />
-            </ListItemIcon>
-            <ListItemText primary="Sair" />
-          </ListItem>
-        </List>
-      </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
-        <Grid container spacing={1}>
-          {products.map((product: Product) => {
-            return (
-              <Grid item xs={4}>
-                <ProductCard
-                  id={product.id}
-                  description={product.description}
-                  model={product.model}
-                  idNotebook={product.idNotebook}
-                  img={product.img}
-                  linkDetails={product.linkDetails}
-                  price={product.price}
-                  ratting={product.ratting}
-                />
-              </Grid>
-            );
+      <Router>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            <ListItem
+              button
+              component={Link}
+              to="/admin/products"
+              key="products"
+            >
+              <ListItemIcon>
+                <ExitIcon />
+              </ListItemIcon>
+              <ListItemText primary="Products" />
+            </ListItem>
+            <ListItem button key="sair">
+              <ListItemIcon>
+                <ExitIcon />
+              </ListItemIcon>
+              <ListItemText primary="Sair" />
+            </ListItem>
+          </List>
+        </Drawer>
+        <main
+          className={clsx(classes.content, {
+            [classes.contentShift]: open,
           })}
-        </Grid>
-      </main>
+        >
+          <div className={classes.drawerHeader} />
+          <div>
+            <Switch>
+              <Route exact path="/admin/products">
+                <Products />
+              </Route>
+            </Switch>
+          </div>
+        </main>
+      </Router>
     </div>
   );
 }
