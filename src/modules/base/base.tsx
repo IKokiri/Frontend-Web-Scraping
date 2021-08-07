@@ -25,6 +25,7 @@ import { Grid } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Product } from '../../types/Product';
 import Products from '../products/Products';
+import EditProduct from '../EditProduct/EditProduct';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
@@ -147,7 +148,7 @@ export default function PersistentDrawerLeft() {
             <ListItem
               button
               component={Link}
-              to="/admin/products"
+              to="/admin/product"
               key="products"
             >
               <ListItemIcon>
@@ -171,8 +172,11 @@ export default function PersistentDrawerLeft() {
           <div className={classes.drawerHeader} />
           <div>
             <Switch>
-              <Route exact path="/admin/products">
+              <Route exact path="/admin/product">
                 <Products />
+              </Route>
+              <Route exact path="/admin/product/edit/:id">
+                <EditProduct />
               </Route>
             </Switch>
           </div>

@@ -21,7 +21,7 @@ function Products(): JSX.Element {
     <Grid container spacing={2}>
       {products.map((product: Product) => {
         return (
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <ProductCard
               id={product.id}
               description={product.description}
