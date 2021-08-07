@@ -40,8 +40,3 @@ function Products(): JSX.Element {
 }
 
 export default Products;
-
-// eslint-disable-next-line no-lone-blocks
-{
-  /*   */
-}
