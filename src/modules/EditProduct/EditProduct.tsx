@@ -4,8 +4,6 @@ import AxiosGetWithParams from '../../infrastructure/api/AxiosGetWithParams';
 import { Product } from '../../types/Product';
 
 function EditProduct(): JSX.Element {
-  const [product, setProduct] = useState<Product>();
-
   const [model, setModel] = useState('');
   const [description, setDescription] = useState('');
   const [img, setImg] = useState('');
