@@ -7,8 +7,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Product } from '../../types/Product';
+import AxiosDeleteNotebook from '../../infrastructure/api/AxiosDeleteNotebook';
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +28,20 @@ function ProductCard({
   price,
 }: Product): JSX.Element {
   const classes = useStyles();
+  const history = useHistory();
+
+  async function removeNotebook(idNotebook: number): Promise<void> {
+    const confirmDelete = window.confirm('Deseja deletar o registro?');
+    if (confirmDelete) {
+      const axiosDeleteNotebook = new AxiosDeleteNotebook();
+      const resultDeleteNotebook = await axiosDeleteNotebook.remove(idNotebook);
+      if (resultDeleteNotebook.body.data.status) {
+        alert(resultDeleteNotebook.body.data.message);
+        history.push('/admin');
+      }
+    }
+  }
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -67,7 +82,7 @@ function ProductCard({
         >
           Edit
         </Button>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={() => removeNotebook(id)}>
           Delete
         </Button>
       </CardActions>
