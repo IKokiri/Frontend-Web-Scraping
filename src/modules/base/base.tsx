@@ -21,7 +21,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitIcon from '@material-ui/icons/PowerSettingsNew';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+} from 'react-router-dom';
 import ComputerIcon from '@material-ui/icons/Computer';
 import Products from '../products/Products';
 import EditProduct from '../EditProduct/EditProduct';
@@ -90,6 +96,7 @@ export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const history = useHistory();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -97,6 +104,10 @@ export default function PersistentDrawerLeft() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const logout = () => {
+    history.push('/');
   };
 
   return (
@@ -155,7 +166,7 @@ export default function PersistentDrawerLeft() {
               </ListItemIcon>
               <ListItemText primary="Products" />
             </ListItem>
-            <ListItem button key="sair">
+            <ListItem button onClick={logout} key="sair">
               <ListItemIcon>
                 <ExitIcon />
               </ListItemIcon>
