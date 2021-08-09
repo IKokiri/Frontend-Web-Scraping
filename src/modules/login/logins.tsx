@@ -39,8 +39,8 @@ function Login(): JSX.Element {
     const name = event.target.elements.registerName.value;
     const password = event.target.elements.registerPassword.value;
     const confirmPassword = event.target.elements.registerConfirmPassword.value;
-    const result = password === confirmPassword;
-    if (!result) {
+    const checkMathPassword = password === confirmPassword;
+    if (!checkMathPassword) {
       alert('Passwords are not the same!');
     } else {
       const registerUserParams: RegisterParams = {
@@ -49,7 +49,12 @@ function Login(): JSX.Element {
         senha: password,
       };
       const axiosCreateuser = new AxiosCreateuser();
-      axiosCreateuser.createUser(registerUserParams);
+      const resultCreateuser = await axiosCreateuser.createUser(
+        registerUserParams
+      );
+      if (resultCreateuser.body) {
+        alert(resultCreateuser.body.data.message);
+      }
     }
   };
 

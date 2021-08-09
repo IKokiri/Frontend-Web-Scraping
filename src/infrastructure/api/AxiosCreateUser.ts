@@ -12,7 +12,7 @@ class AxiosCreateuser {
         return data;
       })
       .catch((error) => {
-        return error;
+        return error.response;
       });
 
     const responseCreateuser: ApiResponse = {
