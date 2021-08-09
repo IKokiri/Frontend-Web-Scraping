@@ -35,14 +35,14 @@
             "ts": "never",
             "tsx": "never"
             }
-            ],
+        ],
         "no-useless-constructor": "off",
         "no-shadow": "off",
-"@typescript-eslint/no-shadow": ["error"]
+        "@typescript-eslint/no-shadow": ["error"]
       },
       "settings": {
         "import/resolver": {
         "typescript": {}
         }
-        }
+    }
 }

@@ -7,6 +7,8 @@ import { useHistory } from 'react-router-dom';
 import Authenticate from '../../domain/usecases/authenticate/Authenticate';
 import AxiosPostRequest from '../../infrastructure/api/AxiosPostRequest';
 import { AuthParams } from '../../types/AuthParams';
+import AxiosCreateuser from '../../infrastructure/api/AxiosCreateUser';
+import { RegisterParams } from '../../types/RegisterParams';
 
 function Login(): JSX.Element {
   const axiosPostApi = new AxiosPostRequest();
@@ -32,49 +34,153 @@ function Login(): JSX.Element {
     }
   };
 
+  const register = async (event: any) => {
+    event.preventDefault();
+    const email = event.target.elements.registerEmail.value;
+    const name = event.target.elements.registerName.value;
+    const password = event.target.elements.registerPassword.value;
+    const confirmPassword = event.target.elements.registerConfirmPassword.value;
+    const result = password === confirmPassword;
+    if (!result) {
+      alert('Passwords are not the same!');
+    } else {
+      const registerUserParams: RegisterParams = {
+        email,
+        nome: name,
+        senha: password,
+      };
+      const axiosCreateuser = new AxiosCreateuser();
+      axiosCreateuser.createUser(registerUserParams);
+    }
+  };
+
   return (
-    <Grid container direction="row" justifyContent="center" alignItems="center">
-      <Grid item xs={4}>
-        <form onSubmit={auth}>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <div>
-                <TextField
-                  required
-                  type="text"
-                  id="email"
-                  label="E-Mail"
-                  fullWidth
-                />
-              </div>
+    <div>
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
+      >
+        <Grid item xs={10} md={4} sm={10}>
+          <h2>Login</h2>
+          <form onSubmit={auth}>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <div>
+                  <TextField
+                    required
+                    type="text"
+                    id="email"
+                    label="E-Mail"
+                    fullWidth
+                  />
+                </div>
+              </Grid>
+              <Grid item xs={12}>
+                <div>
+                  <TextField
+                    required
+                    type="password"
+                    id="password"
+                    label="Password"
+                    fullWidth
+                  />
+                </div>
+              </Grid>
+              <Grid item xs={12}>
+                <div>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    type="submit"
+                  >
+                    Entrar
+                  </Button>
+                </div>
+              </Grid>
+              <Grid item xs={12}>
+                <div>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    fullWidth
+                    type="submit"
+                  >
+                    Esqueci Minha Senha!
+                  </Button>
+                </div>
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <div>
-                <TextField
-                  required
-                  type="password"
-                  id="password"
-                  label="Password"
-                  fullWidth
-                />
-              </div>
+          </form>
+        </Grid>
+        <Grid item xs={10} md={4} sm={10}>
+          <h2>Register</h2>
+          <form onSubmit={register}>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <div>
+                  <TextField
+                    required
+                    type="text"
+                    id="registerEmail"
+                    label="E-Mail"
+                    fullWidth
+                  />
+                </div>
+              </Grid>
+              <Grid item xs={12}>
+                <div>
+                  <TextField
+                    required
+                    type="text"
+                    id="registerName"
+                    label="name"
+                    fullWidth
+                  />
+                </div>
+              </Grid>
+              <Grid item xs={6}>
+                <div>
+                  <TextField
+                    required
+                    type="password"
+                    id="registerPassword"
+                    label="Password"
+                    fullWidth
+                  />
+                </div>
+              </Grid>
+              <Grid item xs={6}>
+                <div>
+                  <TextField
+                    required
+                    type="password"
+                    id="registerConfirmPassword"
+                    label="Confirm Password"
+                    fullWidth
+                  />
+                </div>
+              </Grid>
+              <Grid item xs={12}>
+                <div>
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    fullWidth
+                    type="submit"
+                  >
+                    Register
+                  </Button>
+                </div>
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <div>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  type="submit"
-                >
-                  Entrar
-                </Button>
-              </div>
-            </Grid>
-          </Grid>
-        </form>
+          </form>
+        </Grid>
       </Grid>
-    </Grid>
+    </div>
   );
 }
 
