@@ -3,20 +3,12 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './modules/login/logins';
 import Base from './modules/base/base';
+import { MainRoutes } from './routes';
 
 function App(): JSX.Element {
   return (
     <Router>
-      <div>
-        <Switch>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route exact path="/admin">
-            <Base />
-          </Route>
-        </Switch>
-      </div>
+      <MainRoutes />
     </Router>
   );
 }

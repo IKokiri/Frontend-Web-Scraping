@@ -21,16 +21,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitIcon from '@material-ui/icons/PowerSettingsNew';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useHistory,
-} from 'react-router-dom';
+import { Route, Link, useHistory } from 'react-router-dom';
 import ComputerIcon from '@material-ui/icons/Computer';
 import Products from '../products/Products';
 import EditProduct from '../EditProduct/EditProduct';
+import { AdminRoutes } from '../../routes';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
@@ -92,7 +87,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function PersistentDrawerLeft() {
+export default function Base() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -134,64 +129,50 @@ export default function PersistentDrawerLeft() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Router>
-        <Drawer
-          className={classes.drawer}
-          variant="persistent"
-          anchor="left"
-          open={open}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <div className={classes.drawerHeader}>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === 'ltr' ? (
-                <ChevronLeftIcon />
-              ) : (
-                <ChevronRightIcon />
-              )}
-            </IconButton>
-          </div>
-          <Divider />
-          <List>
-            <ListItem
-              button
-              component={Link}
-              to="/admin/product"
-              key="products"
-            >
-              <ListItemIcon>
-                <ComputerIcon />
-              </ListItemIcon>
-              <ListItemText primary="Products" />
-            </ListItem>
-            <ListItem button onClick={logout} key="sair">
-              <ListItemIcon>
-                <ExitIcon />
-              </ListItemIcon>
-              <ListItemText primary="Sair" />
-            </ListItem>
-          </List>
-        </Drawer>
-        <main
-          className={clsx(classes.content, {
-            [classes.contentShift]: open,
-          })}
-        >
-          <div className={classes.drawerHeader} />
-          <div>
-            <Switch>
-              <Route exact path="/admin/product">
-                <Products />
-              </Route>
-              <Route exact path="/admin/product/edit/:id">
-                <EditProduct />
-              </Route>
-            </Switch>
-          </div>
-        </main>
-      </Router>
+      <Drawer
+        className={classes.drawer}
+        variant="persistent"
+        anchor="left"
+        open={open}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <div className={classes.drawerHeader}>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'ltr' ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          <ListItem button component={Link} to="/admin/product" key="products">
+            <ListItemIcon>
+              <ComputerIcon />
+            </ListItemIcon>
+            <ListItemText primary="Products" />
+          </ListItem>
+          <ListItem button onClick={logout} key="sair">
+            <ListItemIcon>
+              <ExitIcon />
+            </ListItemIcon>
+            <ListItemText primary="Sair" />
+          </ListItem>
+        </List>
+      </Drawer>
+      <main
+        className={clsx(classes.content, {
+          [classes.contentShift]: open,
+        })}
+      >
+        <div className={classes.drawerHeader} />
+        <div>
+          <AdminRoutes />
+        </div>
+      </main>
     </div>
   );
 }
