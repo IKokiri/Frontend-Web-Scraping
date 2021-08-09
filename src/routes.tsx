@@ -1,7 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Base from './modules/base/base';
+import Base from './modules/base/Base';
+import EditProduct from './modules/EditProduct/EditProduct';
 import Login from './modules/login/logins';
+import Products from './modules/products/Products';
 
 export function MainRoutes(): JSX.Element {
   return (
@@ -19,11 +21,11 @@ export function MainRoutes(): JSX.Element {
 export function AdminRoutes(): JSX.Element {
   return (
     <>
-      <Route path="/login">
-        <Login />
+      <Route exact path="/admin/product">
+        <Products />
       </Route>
-      <Route path="/admin">
-        <Base />
+      <Route exact path="/admin/product/edit/:id">
+        <EditProduct />
       </Route>
     </>
   );

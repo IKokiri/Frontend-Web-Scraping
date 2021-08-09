@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Login from './modules/login/logins';
-import Base from './modules/base/base';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { MainRoutes } from './routes';
 
 function App(): JSX.Element {

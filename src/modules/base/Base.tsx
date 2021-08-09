@@ -21,10 +21,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitIcon from '@material-ui/icons/PowerSettingsNew';
-import { Route, Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import ComputerIcon from '@material-ui/icons/Computer';
-import Products from '../products/Products';
-import EditProduct from '../EditProduct/EditProduct';
 import { AdminRoutes } from '../../routes';
 
 const drawerWidth = 240;
@@ -87,7 +85,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function Base() {
+export default function Base(): JSX.Element {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -102,7 +100,7 @@ export default function Base() {
   };
 
   const logout = () => {
-    history.push('/');
+    history.push('/login');
   };
 
   return (
