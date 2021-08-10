@@ -8,6 +8,7 @@ import AxiosPostRequest from '../../infrastructure/api/AxiosPostRequest';
 import { AuthParams } from '../../types/AuthParams';
 import AxiosCreateuser from '../../infrastructure/api/AxiosCreateUser';
 import { RegisterParams } from '../../types/RegisterParams';
+import imgLogin from './assets/login.jpg';
 
 function Login(): JSX.Element {
   const axiosPostApi = new AxiosPostRequest();
@@ -67,6 +68,15 @@ function Login(): JSX.Element {
         alignItems="center"
         spacing={2}
       >
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={2}
+        >
+          <img src={imgLogin} alt="img login" style={{ width: '200px' }} />
+        </Grid>
         <Grid item xs={10} md={4} sm={10}>
           <h2>Login</h2>
           <form onSubmit={auth}>
@@ -96,6 +106,7 @@ function Login(): JSX.Element {
               <Grid item xs={12}>
                 <div>
                   <Button
+                    style={{ height: '45px' }}
                     variant="contained"
                     color="primary"
                     fullWidth
