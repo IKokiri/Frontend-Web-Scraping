@@ -64,7 +64,7 @@ function ProductCard({
             variant="body2"
             color="textSecondary"
             component="p"
-            style={{ minHeight: '80px' }}
+            style={{ minHeight: '120px' }}
           >
             {description}
           </Typography>

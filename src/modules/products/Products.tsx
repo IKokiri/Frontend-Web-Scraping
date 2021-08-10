@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid, Paper } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import AxiosGetRequest from '../../infrastructure/api/AxiosGetRequest';
 import { Product } from '../../types/Product';
@@ -18,24 +18,27 @@ function Products(): JSX.Element {
   }, []);
 
   return (
-    <Grid container spacing={2}>
-      {products.map((product: Product) => {
-        return (
-          <Grid item xs={4}>
-            <ProductCard
-              id={product.id}
-              description={product.description}
-              model={product.model}
-              idNotebook={product.idNotebook}
-              img={product.img}
-              linkDetails={product.linkDetails}
-              price={product.price}
-              ratting={product.ratting}
-            />
-          </Grid>
-        );
-      })}
-    </Grid>
+    <div>
+      <h1>Notebooks</h1>
+      <Grid container spacing={2}>
+        {products.map((product: Product) => {
+          return (
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+              <ProductCard
+                id={product.id}
+                description={product.description}
+                model={product.model}
+                idNotebook={product.idNotebook}
+                img={product.img}
+                linkDetails={product.linkDetails}
+                price={product.price}
+                ratting={product.ratting}
+              />
+            </Grid>
+          );
+        })}
+      </Grid>
+    </div>
   );
 }
 
