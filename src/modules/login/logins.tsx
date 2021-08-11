@@ -30,6 +30,10 @@ function Login(): JSX.Element {
     if (response.body === undefined) {
       alert('Tente mais tarde!');
     } else if (response.body.data.status) {
+      window.localStorage.setItem(
+        'token',
+        JSON.stringify(response.body.data.data)
+      );
       history.push('/admin');
     } else {
       alert(response.body.data.message);
