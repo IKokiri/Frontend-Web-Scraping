@@ -27,6 +27,7 @@ function Login(): JSX.Element {
     };
 
     const response = await authenticate.auth(params);
+    console.log(response.body);
     if (response.body === undefined) {
       alert('Tente mais tarde!');
     } else if (response.body.data.status) {
@@ -36,7 +37,7 @@ function Login(): JSX.Element {
       );
       history.push('/admin');
     } else {
-      alert(response.body.data.message);
+      alert(response.body.message);
     }
   };
 

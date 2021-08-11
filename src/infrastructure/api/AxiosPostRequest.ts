@@ -20,7 +20,7 @@ class AxiosPostRequest implements IApiPostRequest {
       .catch((error) => {
         const err: ApiResponse = {
           statusCode: error.response.status,
-          body: '',
+          body: error.response.data,
         };
         return err;
       });
