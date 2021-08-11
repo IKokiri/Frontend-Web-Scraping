@@ -10,17 +10,23 @@ class AxiosDeleteNotebook implements IApiDeleteNotebook {
     const resultDelete = await axios
       .delete(`${this.url}notebook/${id}/remove`, headerAxios())
       .then((data) => {
-        return data;
+        const success: ApiResponse = {
+          statusCode: 200,
+          body: data,
+        };
+        return success;
       })
       .catch((error) => {
-        return error;
+        const err: ApiResponse = {
+          statusCode: error.response.status,
+          body: '',
+        };
+        return err;
       });
 
-    const responseRemove: ApiResponse = {
-      body: resultDelete,
-    };
+    const apiResponse: ApiResponse = resultDelete;
 
-    return responseRemove;
+    return apiResponse;
   }
 }
 

@@ -11,15 +11,21 @@ class AxiosPostRequest implements IApiPostRequest {
     const response = await axios
       .post(this.url, params, headerAxios())
       .then((data) => {
-        return data;
+        const success: ApiResponse = {
+          statusCode: 200,
+          body: data,
+        };
+        return success;
       })
       .catch((error) => {
-        return error.response;
+        const err: ApiResponse = {
+          statusCode: error.response.status,
+          body: '',
+        };
+        return err;
       });
 
-    const apiResponse: ApiResponse = {
-      body: response,
-    };
+    const apiResponse: ApiResponse = response;
 
     return apiResponse;
   }

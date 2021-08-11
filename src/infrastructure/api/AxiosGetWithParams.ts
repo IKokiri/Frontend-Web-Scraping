@@ -10,15 +10,21 @@ class AxiosGetWithParams implements IApiGetWithParams {
     const response = await axios
       .get(`${this.url}${id}`, headerAxios())
       .then((data) => {
-        return data;
+        const success: ApiResponse = {
+          statusCode: 200,
+          body: data,
+        };
+        return success;
       })
       .catch((error) => {
-        return error;
+        const err: ApiResponse = {
+          statusCode: error.response.status,
+          body: '',
+        };
+        return err;
       });
 
-    const apiResponse: ApiResponse = {
-      body: response,
-    };
+    const apiResponse: ApiResponse = response;
 
     return apiResponse;
   }

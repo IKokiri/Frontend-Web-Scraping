@@ -10,17 +10,23 @@ class AxiosCreateuser {
     const resultCreateuser = await axios
       .post(this.url, registerParams, headerAxios())
       .then((data) => {
-        return data;
+        const success: ApiResponse = {
+          statusCode: 200,
+          body: data,
+        };
+        return success;
       })
       .catch((error) => {
-        return error.response;
+        const err: ApiResponse = {
+          statusCode: error.response.status,
+          body: '',
+        };
+        return err;
       });
 
-    const responseCreateuser: ApiResponse = {
-      body: resultCreateuser,
-    };
+    const apiResponse: ApiResponse = resultCreateuser;
 
-    return responseCreateuser;
+    return apiResponse;
   }
 }
 

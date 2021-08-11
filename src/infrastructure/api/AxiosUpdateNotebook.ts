@@ -11,17 +11,23 @@ class AxiosUpdateNotebook implements IApiUpdateNotebook {
     const resultUpdate = await axios
       .put(`${this.url}${id}`, notebook, headerAxios())
       .then((data) => {
-        return data;
+        const success: ApiResponse = {
+          statusCode: 200,
+          body: data,
+        };
+        return success;
       })
       .catch((error) => {
-        return error;
+        const err: ApiResponse = {
+          statusCode: error.response.status,
+          body: '',
+        };
+        return err;
       });
 
-    const responseUpdate: ApiResponse = {
-      body: resultUpdate,
-    };
+    const apiResponse: ApiResponse = resultUpdate;
 
-    return responseUpdate;
+    return apiResponse;
   }
 }
 
