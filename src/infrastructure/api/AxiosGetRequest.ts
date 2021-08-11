@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ApiResponse } from '../../types/ApiResponse';
+import headerAxios from './header/headerAxios';
 import { IApiGetRequest } from './IApiGetRequest';
 
 class AxiosGetRequest implements IApiGetRequest {
@@ -7,7 +8,7 @@ class AxiosGetRequest implements IApiGetRequest {
 
   async getRequest(): Promise<ApiResponse> {
     const response = await axios
-      .get(this.url)
+      .get(this.url, headerAxios())
       .then((data) => {
         return data;
       })

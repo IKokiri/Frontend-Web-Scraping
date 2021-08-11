@@ -32,7 +32,7 @@ function Login(): JSX.Element {
     } else if (response.body.data.status) {
       window.localStorage.setItem(
         'token',
-        JSON.stringify(response.body.data.data)
+        JSON.stringify(response.body.data.data.token)
       );
       history.push('/admin');
     } else {

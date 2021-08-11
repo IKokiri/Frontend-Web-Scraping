@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { ApiResponse } from '../../types/ApiResponse';
 import { Notebook } from '../../types/Notebook';
+import headerAxios from './header/headerAxios';
 import { IApiUpdateNotebook } from './IApiUpdateNotebook';
 
 class AxiosUpdateNotebook implements IApiUpdateNotebook {
@@ -8,7 +9,7 @@ class AxiosUpdateNotebook implements IApiUpdateNotebook {
 
   async update(id: number, notebook: Notebook): Promise<ApiResponse> {
     const resultUpdate = await axios
-      .put(`${this.url}${id}`, notebook)
+      .put(`${this.url}${id}`, notebook, headerAxios())
       .then((data) => {
         return data;
       })

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ApiResponse } from '../../types/ApiResponse';
+import headerAxios from './header/headerAxios';
 import { IApiDeleteNotebook } from './IApiDeleteNotebook';
 
 class AxiosDeleteNotebook implements IApiDeleteNotebook {
@@ -7,7 +8,7 @@ class AxiosDeleteNotebook implements IApiDeleteNotebook {
 
   async remove(id: number): Promise<ApiResponse> {
     const resultDelete = await axios
-      .delete(`${this.url}notebook/${id}/remove`)
+      .delete(`${this.url}notebook/${id}/remove`, headerAxios())
       .then((data) => {
         return data;
       })
