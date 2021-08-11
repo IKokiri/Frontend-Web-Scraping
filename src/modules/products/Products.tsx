@@ -1,4 +1,4 @@
-import { Grid, Paper } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import AxiosGetRequest from '../../infrastructure/api/AxiosGetRequest';
 import { Product } from '../../types/Product';
