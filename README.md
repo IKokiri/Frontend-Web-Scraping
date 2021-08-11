@@ -1,46 +1,36 @@
-# Getting Started with Create React App
+# Frontend Web Scraper
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Frontend que exibe informações baseadas em um webscraper que captura informações de notebooks
 
-## Available Scripts
+# Iniciando
 
-In the project directory, you can run:
+Esteja certo que  você tenha intalado o npm e node.
 
-### `npm start`
+## Instalando pacotes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Após fazer o clone do repositório, é necessário acessar a pasta da aplicação via terminal e o comando para instalação dos pacotes deve ser executado, conforme segue:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+npm install
+```
 
-### `npm test`
+## Executando a aplicação
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para executar a aplicação, o comando abaixo deve ser executado no terminal.
 
-### `npm run build`
+```
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Após a execução do comando, a aplicação estará disponível na porta 3000, com possibilidade de acesso tambem via borwser usando o endereço abaixo:
+```
+http://localhost:3000/
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Importante
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Uma visualização da página pode ser exibida, mas as funcionalidades funcionaram apenas se o backend estiver em execução. O backend pose ser clonado no repositório abaixo e pode ser executados de acordo com as informações do "Readme" do mesmo repositório.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+https://github.com/IKokiri/Backend-Web-Scraping
+```
