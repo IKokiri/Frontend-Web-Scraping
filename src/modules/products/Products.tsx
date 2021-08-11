@@ -12,7 +12,7 @@ function Products(): JSX.Element {
   async function listProducts(): Promise<void> {
     const axiosGetRequest = new AxiosGetRequest();
     const resultGetRequest = await axiosGetRequest.getRequest();
-    if (resultGetRequest.body === 401) {
+    if (resultGetRequest.statusCode === 401) {
       history.push('/login');
     } else {
       setProducts(resultGetRequest.body.data.data);
