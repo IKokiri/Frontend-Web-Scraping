@@ -4,7 +4,7 @@ Frontend que exibe informações baseadas em um webscraper que captura informaç
 
 # Iniciando
 
-Esteja certo que  você tenha intalado o npm e node.
+Esteja certo que  você tenha instalado o npm e node.
 
 ## Instalando pacotes
 
