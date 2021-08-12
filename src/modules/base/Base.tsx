@@ -25,6 +25,7 @@ import { Link, useHistory } from 'react-router-dom';
 import ComputerIcon from '@material-ui/icons/Computer';
 import { AdminRoutes } from '../../routes';
 import RemoveToken from '../../infrastructure/localStorage/RemoveToken';
+import GetToken from '../../infrastructure/localStorage/GetToken';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
@@ -106,6 +107,11 @@ export default function Base(): JSX.Element {
 
     history.push('/login');
   };
+
+  const getToken = new GetToken();
+  if (!getToken) {
+    history.push('/login');
+  }
 
   return (
     <div className={classes.root}>
