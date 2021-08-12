@@ -27,7 +27,7 @@ function Login(): JSX.Element {
     };
 
     const response = await authenticate.auth(params);
-    console.log(response.body);
+
     if (response.body === undefined) {
       alert('Tente mais tarde!');
     } else if (response.body.data.status) {
