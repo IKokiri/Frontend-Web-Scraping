@@ -24,6 +24,7 @@ import ExitIcon from '@material-ui/icons/PowerSettingsNew';
 import { Link, useHistory } from 'react-router-dom';
 import ComputerIcon from '@material-ui/icons/Computer';
 import { AdminRoutes } from '../../routes';
+import RemoveToken from '../../infrastructure/localStorage/RemoveToken';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
@@ -100,6 +101,9 @@ export default function Base(): JSX.Element {
   };
 
   const logout = () => {
+    const removeToken = new RemoveToken();
+    removeToken.remove();
+
     history.push('/login');
   };
 
