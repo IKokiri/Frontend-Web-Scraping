@@ -23,9 +23,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ExitIcon from '@material-ui/icons/PowerSettingsNew';
 import { Link, useHistory } from 'react-router-dom';
 import ComputerIcon from '@material-ui/icons/Computer';
+import ScraperIcon from '@material-ui/icons/YoutubeSearchedFor';
 import { AdminRoutes } from '../../routes';
 import RemoveToken from '../../infrastructure/localStorage/RemoveToken';
 import GetToken from '../../infrastructure/localStorage/GetToken';
+import AxiosScreper from '../../infrastructure/api/AxiosScreper';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
@@ -92,6 +94,16 @@ export default function Base(): JSX.Element {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
+
+  const scraper = async (): Promise<void> => {
+    const axiosScraper = new AxiosScreper();
+    const resultGetRequest = await axiosScraper.getCrawler();
+    if (resultGetRequest.statusCode === 401) {
+      history.push('/login');
+    } else {
+      alert('Produtos carregados');
+    }
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -162,6 +174,12 @@ export default function Base(): JSX.Element {
               <ComputerIcon />
             </ListItemIcon>
             <ListItemText primary="Products" />
+          </ListItem>
+          <ListItem onClick={scraper} button key="scraper">
+            <ListItemIcon>
+              <ScraperIcon />
+            </ListItemIcon>
+            <ListItemText primary="Scraper" />
           </ListItem>
           <ListItem button onClick={logout} key="sair">
             <ListItemIcon>
