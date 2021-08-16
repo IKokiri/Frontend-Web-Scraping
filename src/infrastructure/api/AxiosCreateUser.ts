@@ -19,7 +19,7 @@ class AxiosCreateuser {
       .catch((error) => {
         const err: ApiResponse = {
           statusCode: error.response.status,
-          body: '',
+          body: error.response,
         };
         return err;
       });
